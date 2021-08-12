@@ -1,4 +1,4 @@
-package dkey
+package main
 
 import "errors"
 

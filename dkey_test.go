@@ -1,21 +1,19 @@
-package dkey_test
+package main
 
 import (
 	"errors"
 	"testing"
-
-	"github.com/a-poor/dkey"
 )
 
 func TestCreateDKey(t *testing.T) {
-	_, err := dkey.NewDKey()
+	_, err := NewDKey()
 	if err != nil {
 		t.Errorf("error when creating new DKey: %e", err)
 	}
 }
 
 func TestPut(t *testing.T) {
-	dk, err := dkey.NewDKey()
+	dk, err := NewDKey()
 	if err != nil {
 		t.Errorf("error when creating new DKey: %e", err)
 	}
@@ -30,19 +28,19 @@ func TestGet(t *testing.T) {
 
 	testKey, testVal := "test-key", "test-value"
 
-	dk, err := dkey.NewDKey()
+	dk, err := NewDKey()
 	if err != nil {
 		t.Errorf("error when creating new DKey: %e", err)
 	}
 
-	// This should return sentinel error `dkey.ErrorNoSuchKey` because
+	// This should return sentinel error `ErrorNoSuchKey` because
 	// the key does not exist.
 	v, err := dk.Get(testKey)
-	if !errors.Is(err, dkey.ErrorNoSuchKey) && err != nil {
+	if !errors.Is(err, ErrorNoSuchKey) && err != nil {
 		t.Errorf("unexpected error getting from empty DKey: %e", err)
 	}
 	if err == nil {
-		t.Errorf("no sentinel-error returned when GETting from empty DKey. result: \"%v\"", v)
+		t.Errorf("no sentinel-error returned when GETting from empty  result: \"%v\"", v)
 	}
 
 	err = dk.Put(testKey, testVal)
