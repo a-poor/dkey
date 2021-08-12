@@ -8,8 +8,8 @@ type DKey struct {
 	store map[string]string
 }
 
-func NewDKey() (DKey, error) {
-	return DKey{store: make(map[string]string)}, nil
+func NewDKey() (*DKey, error) {
+	return &DKey{store: make(map[string]string)}, nil
 }
 
 func (dk *DKey) Get(key string) (string, error) {
